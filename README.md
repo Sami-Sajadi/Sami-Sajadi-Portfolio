@@ -9,19 +9,16 @@ Welcome to my SQL and RStudio Portfolio! This repository showcases various proje
 ## Repository Contents
 
 - **SQL Projects**:
-  - `E-commerce Sales Analysis`: SQL scripts analyzing sales performance, customer behavior, and product trends.
   - `Global Billionaires Dataset`: Queries exploring wealth distribution, industry trends, and demographic insights.
 
 - **RStudio Projects**:
-  - `E-Learning Analysis`: Data wrangling, statistical analysis, and visualization of survey data related to online education during the COVID-19 pandemic.
-  - `Climate Change Analysis`: Exploratory data analysis and visualization of global temperature trends.
+  - Coming Soon
 
 ## Tools and Skills
 
 - **SQL**: Data extraction, transformation, aggregation, and filtering using queries.
 - **RStudio**: Data wrangling with `dplyr`, statistical analysis, and visualization with `ggplot2`.
 - **Data Visualization**: Creating dashboards, charts, and plots to uncover trends.
-- **Data Cleaning**: Handling missing data and preparing datasets for analysis.
 
 ## How to Use This Repository
 
@@ -34,4 +31,3 @@ Welcome to my SQL and RStudio Portfolio! This repository showcases various proje
 If you have any questions or would like to collaborate, feel free to reach out:
 
 - **Portfolio**: [samisaj.com](https://www.samisaj.com)
-- **LinkedIn**: [Your LinkedIn](#)
