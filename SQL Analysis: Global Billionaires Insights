@@ -1,7 +1,9 @@
 # SQL Project: Billionaires Dataset Analysis
 
 ## Introduction
-This project explores the world's richest individuals using SQL. By analyzing a dataset of billionaires, I extracted key insights into their net worth, industries, geographical distribution, and demographics. The queries demonstrate my growing SQL skills, including filtering, grouping, aggregating, and performing calculations on structured data.
+This project explores the world's richest individuals using SQL. 
+By analyzing a dataset of billionaires, I extracted key insights into their net worth, industries, geographical distribution, and demographics. 
+The queries demonstrate my growing SQL skills, including filtering, grouping, aggregating, and performing calculations on structured data.
 
 ## Tools Used
 - **SQL**: For querying, filtering, and analyzing the dataset.
