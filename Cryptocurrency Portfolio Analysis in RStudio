@@ -86,3 +86,100 @@ for (i in 1:364) {
 }
 max_drawdown <- max(ATH_Bitcoin) * 100
 cat("Maximum Drawdown for Bitcoin: ", max_drawdown, "%\n")
+
+# Simulate Portfolio Performance for Diversified Portfolio (Solana, Ripple, Cardano, Dogecoin)
+sol_investment <- 1250
+ripple_investment <- 1250
+cardano_investment <- 1250
+dogecoin_investment <- 1250
+
+for (i in 1:364) {
+  sol_investment <- sol_investment * (1 + Solana_DailyReturn[i])
+  ripple_investment <- ripple_investment * (1 + Ripple_DailyReturn[i])
+  cardano_investment <- cardano_investment * (1 + Cardano_DailyReturn[i])
+  dogecoin_investment <- dogecoin_investment * (1 + Dogecoin_DailyReturn[i])
+}
+
+portfolio3_value <- sol_investment + ripple_investment + cardano_investment + dogecoin_investment
+cat("Portfolio value after 1 year (Diversified Portfolio): $", portfolio3_value, "\n")
+
+# Calculate Maximum Portfolio Value (Ethereum and BNB)
+eth_investment <- 2500
+bnb_investment <- 2500
+eth_max <- eth_investment
+bnb_max <- bnb_investment
+
+for (i in 1:364) {
+  eth_investment <- eth_investment * (1 + Ethereum_DailyReturn[i])
+  bnb_investment <- bnb_investment * (1 + BNB_DailyReturn[i])
+  eth_max <- max(eth_max, eth_investment)
+  bnb_max <- max(bnb_max, bnb_investment)
+}
+
+portfolio2_max <- eth_max + bnb_max
+cat("Maximum portfolio value (Ethereum and BNB): $", portfolio2_max, "\n")
+
+# Calculate Maximum Portfolio Value for Diversified Portfolio (Solana, Ripple, Cardano, Dogecoin)
+sol_max <- sol_investment
+ripple_max <- ripple_investment
+cardano_max <- cardano_investment
+dogecoin_max <- dogecoin_investment
+
+portfolio3_max <- sol_max + ripple_max + cardano_max + dogecoin_max
+
+for (i in 1:364) {
+  sol_max <- sol_investment * (1 + Solana_DailyReturn[i])
+  ripple_max <- ripple_investment * (1 + Ripple_DailyReturn[i])
+  cardano_max <- cardano_investment * (1 + Cardano_DailyReturn[i])
+  dogecoin_max <- dogecoin_investment * (1 + Dogecoin_DailyReturn[i])
+  portfolio3_max <- max(sol_max + ripple_max + cardano_max + dogecoin_max, portfolio3_max)
+}
+
+cat("Maximum portfolio value (Diversified Portfolio): $", portfolio3_max, "\n")
+
+# Identify the Day of Maximum Portfolio Value for Bitcoin
+btc_investment <- 5000
+btc_daily_values <- numeric()
+
+for (i in 1:364) {
+  btc_investment <- btc_investment * (1 + Bitcoin_DailyReturn[i])
+  btc_daily_values[i] <- btc_investment
+}
+
+btc_max_day <- which.max(btc_daily_values)
+cat("Day of maximum Bitcoin portfolio value: ", bitcoin.data[btc_max_day, "Date"], "\n")
+
+# Calculate Correlation Between Bitcoin and Combined Portfolio 3 Daily Returns
+combined_portfolio3_DailyReturns <- rowMeans(portfolio3_DailyReturns, na.rm = TRUE)
+correlation_btc_portfolio3 <- cor(na.omit(Bitcoin_DailyReturn), na.omit(combined_portfolio3_DailyReturns))
+cat("Correlation between Bitcoin and Portfolio 3: ", correlation_btc_portfolio3, "\n")
+
+# Calculate Maximum Drawdown for Diversified Portfolio
+portfolio3_price_vector <- (
+  solana.data$Price * (1250 / solana.data$Price[1]) +
+    ripple.data$Price * (1250 / ripple.data$Price[1]) +
+    cardano.data$Price * (1250 / cardano.data$Price[1]) +
+    dogecoin.data$Price * (1250 / dogecoin.data$Price[1])
+)
+
+portfolio3_drawdown <- numeric()
+for (i in 1:364) {
+  portfolio3_drawdown[i] <- (
+    max(portfolio3_price_vector[1:i]) - portfolio3_price_vector[i]
+  ) / max(portfolio3_price_vector[1:i])
+}
+
+max_drawdown_portfolio3 <- max(na.omit(portfolio3_drawdown)) * 100
+cat("Maximum Drawdown for Diversified Portfolio: ", max_drawdown_portfolio3, "%\n")
+
+# Calculate Annualized Returns for Dogecoin
+dogecoin_cumulative_return <- numeric()
+dogecoin_cumulative_return[1] <- (Dogecoin_DailyReturn[1] * 1) + 1
+
+for (i in 2:364) {
+  dogecoin_cumulative_return[i] <- dogecoin_cumulative_return[i - 1] * (1 + Dogecoin_DailyReturn[i]) + 1
+}
+
+dogecoin_final_value <- dogecoin_cumulative_return[364]
+cat("Final value of Dogecoin investment: $", dogecoin_final_value, "\n")
+
