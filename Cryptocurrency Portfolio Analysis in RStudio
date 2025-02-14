@@ -1,31 +1,88 @@
-## Introduction
+# Cryptocurrency Portfolio Analysis in RStudio
+# This script analyzes cryptocurrency performance over a year using ROI, daily returns, risk assessment, and portfolio simulations.
 
-This project analyzes the performance of cryptocurrency portfolios over a year using historical price data. 
-By leveraging RStudio, the project evaluates returns, portfolio value, risks, and correlations to simulate investment strategies. 
-Key calculations include Return on Investment (ROI), daily returns, portfolio performance over time, maximum drawdown, and correlation between portfolios.
+# Calculate Return on Investment (ROI) for each cryptocurrency
+ROI_bitcoin <- (bitcoin.data[365, 2] - bitcoin.data[1, 2]) / bitcoin.data[1, 2]
+ROI_BNB <- (BNB.data[365, 2] - BNB.data[1, 2]) / BNB.data[1, 2]
+ROI_cardano <- (cardano.data[365, 2] - cardano.data[1, 2]) / cardano.data[1, 2]
+ROI_dogecoin <- (dogecoin.data[365, 2] - dogecoin.data[1, 2]) / dogecoin.data[1, 2]
+ROI_ethereum <- (ethereum.data[365, 2] - ethereum.data[1, 2]) / ethereum.data[1, 2]
+ROI_ripple <- (ripple.data[365, 2] - ripple.data[1, 2]) / ripple.data[1, 2]
+ROI_solana <- (solana.data[365, 2] - solana.data[1, 2]) / solana.data[1, 2]
 
----
+ROI_values <- c(ROI_bitcoin, ROI_BNB, ROI_cardano, ROI_dogecoin, ROI_ethereum, ROI_ripple, ROI_solana)
+print(ROI_values)
+cat("Cryptocurrency with the highest ROI: ", which.max(ROI_values), "\n")
 
-### Tools Used
+# Calculate Daily Returns for each cryptocurrency
+n1 <- nrow(bitcoin.data)
+Bitcoin_DailyReturn <- (bitcoin.data$Price[2:n1] - bitcoin.data$Price[1:(n1-1)]) / bitcoin.data$Price[1:(n1-1)]
 
-- **RStudio**: Used for data analysis and visualization.
-- **Libraries**: `dplyr`, `ggplot2`, `tidyverse`.
+n2 <- nrow(BNB.data)
+BNB_DailyReturn <- (BNB.data$Price[2:n2] - BNB.data$Price[1:(n2-1)]) / BNB.data$Price[1:(n2-1)]
 
----
+n3 <- nrow(cardano.data)
+Cardano_DailyReturn <- (cardano.data$Price[2:n3] - cardano.data$Price[1:(n3-1)]) / cardano.data$Price[1:(n3-1)]
 
-## Code and Analysis
+n4 <- nrow(dogecoin.data)
+Dogecoin_DailyReturn <- (dogecoin.data$Price[2:n4] - dogecoin.data$Price[1:(n4-1)]) / dogecoin.data$Price[1:(n4-1)]
 
-### 1. Return on Investment (ROI)
-```r
-# Calculate ROI for each cryptocurrency
-a1<-(bitcoin.data[365, 2] - bitcoin.data[1, 2]) / bitcoin.data[1, 2]
-b2<-(BNB.data[365, 2] - BNB.data[1, 2]) / BNB.data[1, 2]
-c3<-(cardano.data[365, 2] - cardano.data[1, 2]) / cardano.data[1, 2]
-d4<-(dogecoin.data[365, 2] - dogecoin.data[1, 2]) / dogecoin.data[1, 2]
-e5<-(ethereum.data[365, 2] - ethereum.data[1, 2]) / ethereum.data[1, 2]
-f6<-(ripple.data[365, 2] - ripple.data[1, 2]) / ripple.data[1, 2]
-g7<-(solana.data[365, 2] - solana.data[1, 2]) / solana.data[1, 2]
+n5 <- nrow(ethereum.data)
+Ethereum_DailyReturn <- (ethereum.data$Price[2:n5] - ethereum.data$Price[1:(n5-1)]) / ethereum.data$Price[1:(n5-1)]
 
-ROI.data <- c(a1, b2, c3, d4, e5, f6, g7)
-ROI.data
-which.max(ROI.data)
+n6 <- nrow(ripple.data)
+Ripple_DailyReturn <- (ripple.data$Price[2:n6] - ripple.data$Price[1:(n6-1)]) / ripple.data$Price[1:(n6-1)]
+
+n7 <- nrow(solana.data)
+Solana_DailyReturn <- (solana.data$Price[2:n7] - solana.data$Price[1:(n7-1)]) / solana.data$Price[1:(n7-1)]
+
+# Combine daily returns into a data frame and calculate the mean
+dailyReturns <- data.frame(Bitcoin_DailyReturn, BNB_DailyReturn, Cardano_DailyReturn, Dogecoin_DailyReturn,
+                           Ethereum_DailyReturn, Ripple_DailyReturn, Solana_DailyReturn)
+mean_dailyReturns <- colMeans(dailyReturns, na.rm = TRUE)
+print(mean_dailyReturns)
+cat("Cryptocurrency with the highest average daily return: ", which.max(mean_dailyReturns), "\n")
+
+# Assess Risk (Standard Deviation of Daily Returns)
+sd_Bitcoin <- sd(Bitcoin_DailyReturn, na.rm = TRUE)
+sd_BNB <- sd(BNB_DailyReturn, na.rm = TRUE)
+sd_Cardano <- sd(Cardano_DailyReturn, na.rm = TRUE)
+sd_Dogecoin <- sd(Dogecoin_DailyReturn, na.rm = TRUE)
+sd_Ethereum <- sd(Ethereum_DailyReturn, na.rm = TRUE)
+sd_Ripple <- sd(Ripple_DailyReturn, na.rm = TRUE)
+sd_Solana <- sd(Solana_DailyReturn, na.rm = TRUE)
+
+sd_values <- c(sd_Bitcoin, sd_BNB, sd_Cardano, sd_Dogecoin, sd_Ethereum, sd_Ripple, sd_Solana)
+print(sd_values)
+cat("Cryptocurrency with the lowest risk (standard deviation): ", which.min(sd_values), "\n")
+
+# Simulate Portfolio Performance for Bitcoin
+btc_investment <- 5000
+for (i in 1:364) {
+  btc_investment <- btc_investment * (1 + Bitcoin_DailyReturn[i])
+}
+cat("Portfolio value after 1 year (Bitcoin): $", btc_investment, "\n")
+
+# Simulate Portfolio Performance for Ethereum and BNB
+eth_investment <- 2500
+bnb_investment <- 2500
+for (i in 1:364) {
+  eth_investment <- eth_investment * (1 + Ethereum_DailyReturn[i])
+  bnb_investment <- bnb_investment * (1 + BNB_DailyReturn[i])
+}
+portfolio2_value <- eth_investment + bnb_investment
+cat("Portfolio value after 1 year (Ethereum and BNB): $", portfolio2_value, "\n")
+
+# Calculate Correlation Between Bitcoin and Combined Portfolio
+portfolio3_DailyReturns <- data.frame(Solana_DailyReturn, Ripple_DailyReturn, Cardano_DailyReturn, Dogecoin_DailyReturn)
+combined_portfolio3_DailyReturns <- rowMeans(portfolio3_DailyReturns, na.rm = TRUE)
+correlation <- cor(na.omit(Bitcoin_DailyReturn), na.omit(combined_portfolio3_DailyReturns))
+cat("Correlation between Bitcoin and Portfolio 3: ", correlation, "\n")
+
+# Calculate Maximum Drawdown for Bitcoin
+ATH_Bitcoin <- numeric()
+for (i in 1:364) {
+  ATH_Bitcoin[i] <- (max(bitcoin.data$Price[1:i]) - bitcoin.data$Price[i]) / max(bitcoin.data$Price[1:i])
+}
+max_drawdown <- max(ATH_Bitcoin) * 100
+cat("Maximum Drawdown for Bitcoin: ", max_drawdown, "%\n")
