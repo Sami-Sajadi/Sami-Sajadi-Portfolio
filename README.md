@@ -1,7 +1,6 @@
 # Sami Sajadi's Portfolio
 
 Welcome to my GitHub portfolio! This repository showcases my work in data analysis and visualization, featuring projects in:
-
 - **SQL**: Query optimization, data exploration, and ETL workflows.
 - **RStudio**: Statistical analysis and data visualization using R.
 - **Tableau & Power BI**: Interactive dashboards and business intelligence.
