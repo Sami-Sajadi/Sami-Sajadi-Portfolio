@@ -1,0 +1,31 @@
+## Introduction
+
+This project analyzes the performance of cryptocurrency portfolios over a year using historical price data. 
+By leveraging RStudio, the project evaluates returns, portfolio value, risks, and correlations to simulate investment strategies. 
+Key calculations include Return on Investment (ROI), daily returns, portfolio performance over time, maximum drawdown, and correlation between portfolios.
+
+---
+
+### Tools Used
+
+- **RStudio**: Used for data analysis and visualization.
+- **Libraries**: `dplyr`, `ggplot2`, `tidyverse`.
+
+---
+
+## Code and Analysis
+
+### 1. Return on Investment (ROI)
+```r
+# Calculate ROI for each cryptocurrency
+a1<-(bitcoin.data[365, 2] - bitcoin.data[1, 2]) / bitcoin.data[1, 2]
+b2<-(BNB.data[365, 2] - BNB.data[1, 2]) / BNB.data[1, 2]
+c3<-(cardano.data[365, 2] - cardano.data[1, 2]) / cardano.data[1, 2]
+d4<-(dogecoin.data[365, 2] - dogecoin.data[1, 2]) / dogecoin.data[1, 2]
+e5<-(ethereum.data[365, 2] - ethereum.data[1, 2]) / ethereum.data[1, 2]
+f6<-(ripple.data[365, 2] - ripple.data[1, 2]) / ripple.data[1, 2]
+g7<-(solana.data[365, 2] - solana.data[1, 2]) / solana.data[1, 2]
+
+ROI.data <- c(a1, b2, c3, d4, e5, f6, g7)
+ROI.data
+which.max(ROI.data)
