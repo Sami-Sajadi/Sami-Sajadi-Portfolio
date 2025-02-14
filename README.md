@@ -16,4 +16,6 @@ Welcome to my GitHub portfolio! This repository showcases my work in data analys
 - Statistical Modeling
 - Data Visualization
 
+- **Portfolio**: [samisaj.com](https://www.samisaj.com)
+
 Feel free to explore, give feedback, or connect with me!
