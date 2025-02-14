@@ -10,20 +10,11 @@ Welcome to my GitHub portfolio! This repository showcases my work in data analys
 - [Cryptocurrency Portfolio Analysis in RStudio](link):
 
 ## Introduction
-This project analyzes the performance of cryptocurrency portfolios over a year using historical price data. By leveraging RStudio, the project evaluates returns, portfolio value, risks, and correlations to simulate investment strategies. Key calculations include Return on Investment (ROI), daily returns, portfolio performance over time, maximum drawdown, and correlation between portfolios.
+This project analyzes the performance of cryptocurrency portfolios over a year using historical price data. 
+By leveraging RStudio, the project evaluates returns, portfolio value, risks, and correlations to simulate investment strategies. 
+Key calculations include Return on Investment (ROI), daily returns, portfolio performance over time, maximum drawdown, and correlation between portfolios.
 
-## Tools and Techniques
-
-- **Tools Used**:
-  - RStudio for data analysis and visualization.
-  - Libraries: `dplyr`, `ggplot2`, and `tidyverse`.
-
-- **Analysis Techniques**:
-  - Calculating ROI for individual cryptocurrencies.
-  - Computing daily returns and portfolio values over time.
-  - Measuring risk (standard deviation) and correlations between assets.
-  - Simulating portfolio performance with varying allocations.
-
+---
 ### Key Features
 
 - **Portfolio ROI**: Determined ROI for individual cryptocurrencies and portfolios.
