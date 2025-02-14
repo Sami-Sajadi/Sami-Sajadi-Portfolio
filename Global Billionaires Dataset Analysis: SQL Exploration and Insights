@@ -1,0 +1,75 @@
+# SQL Project: Billionaires Dataset Analysis
+
+## Introduction
+This project explores the world's richest individuals using SQL. By analyzing a dataset of billionaires, I extracted key insights into their net worth, industries, geographical distribution, and demographics. The queries demonstrate my growing SQL skills, including filtering, grouping, aggregating, and performing calculations on structured data.
+
+## Tools Used
+- **SQL**: For querying, filtering, and analyzing the dataset.
+- **Database**: BigQuery (or mention your preferred SQL database if applicable).
+- **Data Source**: Billionaires dataset with information on net worth, country, industry, and more.
+
+## Key Features
+- **Exploration**: Identifying countries, industries, and demographics represented in the dataset.
+- **Aggregation**: Analyzing average net worth, counts, and percentages.
+- **Filtering**: Extracting insights based on specific conditions (e.g., self-made billionaires, top industries).
+- **Experimentation**: Trying out custom queries to explore age, wealth, and geographical trends.
+
+## SQL Code
+Below is the SQL code used for the analysis:
+
+```sql
+-- List of billionaires
+SELECT * FROM `dataset one`;
+
+-- Name and net worth of people on the list
+SELECT personName, finalWorth FROM `dataset one`
+LIMIT 10;
+
+-- Different countries on the list
+SELECT DISTINCT country FROM `dataset one`;
+
+SELECT country, COUNT(personName) AS people_count
+FROM `dataset one` 
+GROUP BY country
+ORDER BY people_count DESC;
+
+-- Number of countries on the list
+SELECT COUNT(DISTINCT country) FROM `dataset one`;
+
+-- Number of people on the list
+SELECT COUNT(DISTINCT personname) FROM `dataset one`;
+
+-- Average net worth
+SELECT AVG(finalWorth) FROM `dataset one`;
+
+-- People from France but not Paris
+SELECT * FROM `dataset one`
+WHERE country = 'france' AND city <> 'paris';
+
+-- People from France and Spain
+SELECT * FROM `dataset one`
+WHERE country = 'france' OR country = 'spain';
+
+-- People from India, Japan, China, and Singapore
+SELECT * FROM `dataset one`
+WHERE country IN('india', 'japan', 'china', 'singapore');
+
+-- Number of self-made billionaires
+SELECT COUNT(personname) FROM `dataset one`
+WHERE selfmade = 'false';
+
+-- Number of people by industry (top 10)
+SELECT industries, COUNT(personname) AS people_count FROM `dataset one`
+GROUP BY industries
+ORDER BY COUNT(personname) DESC
+LIMIT 10;
+
+-- Number of people by birth month
+SELECT birthmonth, COUNT(personname) FROM `dataset one`
+GROUP BY birthMonth
+ORDER BY COUNT(personname) DESC;
+
+-- Experimentation
+SELECT * FROM `dataset one`;
+SELECT finalWorth, selfMade FROM `dataset one`;
+SELECT personName, age FROM `dataset one` WHERE age < 35;
