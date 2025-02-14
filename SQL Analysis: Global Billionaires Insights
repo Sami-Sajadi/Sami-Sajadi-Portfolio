@@ -19,7 +19,6 @@ The queries demonstrate my growing SQL skills, including filtering, grouping, ag
 ## SQL Code
 Below is the SQL code used for the analysis:
 
-```sql
 -- List of billionaires
 SELECT * FROM `dataset one`;
 
