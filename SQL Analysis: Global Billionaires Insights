@@ -7,7 +7,7 @@ The queries demonstrate my growing SQL skills, including filtering, grouping, ag
 
 ## Tools Used
 - **SQL**: For querying, filtering, and analyzing the dataset.
-- **Database**: BigQuery (or mention your preferred SQL database if applicable).
+- **Database**: MySQL
 - **Data Source**: Billionaires dataset with information on net worth, country, industry, and more.
 
 ## Key Features
